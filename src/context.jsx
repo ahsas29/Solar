@@ -18,7 +18,7 @@ const AppProvider = ({ children }) => {
     return dispatch({
       type: "HOME_UPDATE",
       payload: {
-        name: "Lorem Ipsum",
+        name: "Home",
         image: "./images/hero.jpg",
       },
     });
@@ -28,7 +28,7 @@ const AppProvider = ({ children }) => {
     return dispatch({
       type: "ABOUT_UPDATE",
       payload: {
-        name: "Lorem Ipsum",
+        name: "About",
         image: "./images/about.jpg",
       },
     });

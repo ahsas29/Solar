@@ -1,38 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useGlobalContext } from "./context";
 import { NavLink } from "react-router-dom";
 import { Button } from "./styles/Button";
 
 const Services = () => {
-  const { services } = useGlobalContext();
-  console.log(services);
+  const [showMore1, setShowMore1] = useState(false);
+  const [showMore2, setShowMore2] = useState(false);
+
+  const handleReadMore1 = () => {
+    setShowMore1(!showMore1);
+  };
+
+  const handleReadMore2 = () => {
+    setShowMore2(!showMore2);
+  };
 
   return (
     <Wrapper className="section">
       <h2 className="common-heading">Our Services</h2>
-      <div className="container grid grid-three-column">
-        {services.map((curElem) => {
-          const { id, name, image, description } = curElem;
-          return (
-            <div key={id} className="card">
-              <figure>
-                <img src={image} alt={name} />
-              </figure>
-              <div className="card-data">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <NavLink to="/service">
-                  <Button className="btn">Read More</Button>
-                </NavLink>
-              </div>
-            </div>
-          );
-        })}
+      <div className="container grid grid-two-column">
+        {/* Service 1 */}
+        <div className="card">
+          <figure>
+            <img src="path/to/image1.jpg" alt="Service 1" />
+          </figure>
+          <div className="card-data">
+            <h3>Service 1</h3>
+            <p>
+              {showMore1
+                ? "Description for Service 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et venenatis libero."
+                : "Short description for Service 1."}
+            </p>
+            <NavLink to="/service">
+              <Button className="btn" onClick={handleReadMore1}>
+                {showMore1 ? "Read Less" : "Read More"}
+              </Button>
+            </NavLink>
+          </div>
+        </div>
+
+        {/* Service 2 */}
+        <div className="card">
+          <figure>
+            <img src="path/to/image2.jpg" alt="Service 2" />
+          </figure>
+          <div className="card-data">
+            <h3>Service 2</h3>
+            <p>
+              {showMore2
+                ? "Description for Service 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et venenatis libero."
+                : "Short description for Service 2."}
+            </p>
+            <NavLink to="/service">
+              <Button className="btn" onClick={handleReadMore2}>
+                {showMore2 ? "Read Less" : "Read More"}
+              </Button>
+            </NavLink>
+          </div>
+        </div>
       </div>
     </Wrapper>
   );
 };
+
+// ... (rest of the code remains the same)
+
 
 const Wrapper = styled.section`
   padding: 9rem 0;
@@ -100,12 +132,6 @@ const Wrapper = styled.section`
       margin-top: 1.5rem;
       height: 20rem;
       transition: all 0.2s linear;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.media.tab}) {
-    .grid-three-column {
-      grid-template-columns: 1fr 1fr;
     }
   }
 

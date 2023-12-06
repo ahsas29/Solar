@@ -1,11 +1,21 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles/Button";
 import { useGlobalContext } from "../context";
 
-const HeroSection = () => {
+const AboutContent = () => {
   const { name, image } = useGlobalContext();
+  const [isReadMore, setIsReadMore] = useState(false);
+  const navigate = useNavigate();
+
+  const myFunction = () => {
+    setIsReadMore(!isReadMore);
+    if (!isReadMore) {
+      // Navigate to a new route when "Read more" is clicked
+      navigate("/about-more");
+    }
+  };
 
   return (
     <Wrapper>
@@ -14,10 +24,10 @@ const HeroSection = () => {
           <p className="hero-top-data">ENERGY & QUANTUM ELECTRONICS LAB, SRM IST</p>
           <h1 className="hero-heading">AI-Driven Energy Transition for Solar Industry</h1>
           <p className="hero-para">
-          Making Industry-Ready R&D
+            Making Industry-Ready R&D {isReadMore && "Test text line for read more"}
           </p>
-          <Button className="btn hireme-btn" onclick="myFunction()" id="myBtn">
-            <NavLink to="/about"> About </NavLink>
+          <Button className="btn readmore-btn" onClick={myFunction} id="myBtn">
+            <NavLink to="/about"> {isReadMore ? "Read less" : "Read more"} </NavLink>
           </Button>
         </div>
 
@@ -31,6 +41,9 @@ const HeroSection = () => {
     </Wrapper>
   );
 };
+
+// ... (rest of the code remains unchanged)
+
 
 const Wrapper = styled.section`
   padding: 9rem 0;
@@ -83,4 +96,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default HeroSection;
+export default AboutContent;
