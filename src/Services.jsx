@@ -25,11 +25,11 @@ const Services = () => {
             <img src="path/to/image1.jpg" alt="Service 1" />
           </figure>
           <div className="card-data">
-            <h3>Service 1</h3>
+            <h3>Design Hub</h3>
             <p>
               {showMore1
-                ? "Description for Service 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et venenatis libero."
-                : "Short description for Service 1."}
+                ? "We design dedicated R&D tools forSolar Cell Manufacturers and make it easy to connect with the production line and future R&D work at a very low cost. Our tool can be operated by anyone with less technical knowledge."
+                : "About Design Hub."}
             </p>
             <NavLink to="/service">
               <Button className="btn" onClick={handleReadMore1}>
@@ -45,11 +45,11 @@ const Services = () => {
             <img src="path/to/image2.jpg" alt="Service 2" />
           </figure>
           <div className="card-data">
-            <h3>Service 2</h3>
+            <h3>Service Hub</h3>
             <p>
               {showMore2
-                ? "Description for Service 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et venenatis libero."
-                : "Short description for Service 2."}
+                ? "Our customized software includes a full suite of tools to boost any solar cell R&D productivity. Regular maintenance and upgradation of tool with more features."
+                : "About Service Hub."}
             </p>
             <NavLink to="/service">
               <Button className="btn" onClick={handleReadMore2}>
@@ -63,7 +63,7 @@ const Services = () => {
   );
 };
 
-// ... (rest of the code remains the same)
+// ... styling
 
 
 const Wrapper = styled.section`
