@@ -2,17 +2,33 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { CgMenu, CgCloseR } from "react-icons/cg";
+import { useAuth0 } from "@auth0/auth0-react";
+import Button from "../styles/Button";
+
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   const Nav = styled.nav`
     .navbar-list {
       display: flex;
       gap: 4.8rem;
+      align-items: center;
+
+      p {
+        color: ${({ theme }) => theme.colors.white};
+        display: inline-block;
+        align-items: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+        font-family: 'Work Sans', sans-serif;
+    }
 
       li {
         list-style: none;
+        
 
         .navbar-link {
           &:link,
@@ -151,6 +167,21 @@ const Navbar = () => {
               Contact
             </NavLink>
           </li>
+          
+            {isAuthenticated && (<li> <p> Welcome, {user.name} </p>
+          </li>
+          )}
+          {
+            isAuthenticated ? (<li>
+            <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+        Log Out
+      </Button>
+                </li>) : (<li>
+          <Button onClick={() => loginWithRedirect()}>Log In</Button>
+          </li>)
+          }
+          
+          
         </ul>
         {/* //nav icon */}
         <div className="mobile-navbar-btn">
